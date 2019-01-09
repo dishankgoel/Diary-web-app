@@ -26,7 +26,7 @@
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Note</a>
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right navi">
                         <li class="nav-item active">
                             <a class="nav-link" href="{% url 'page_list' %}">Home</a>
                         </li>
@@ -43,6 +43,14 @@
         {% block content %}
         {% endblock %}
         </div>
+        <script>
+            $(function(){
+		        $('.navi a').filter(function(){return this.href==location.href}).parent().addClass('active').siblings().removeClass('active');
+		        $('.navi a').click(function(){
+			        $(this).parent().addClass('active').siblings().removeClass('active');	
+		        });
+        	});
+        </script>
         {% block app_js %}
         {% endblock %}
     </body>
