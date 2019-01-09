@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Welcome</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        
+        <link rel="stylesheet" href="{% static 'css/entry.css' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+    <body>
+        <div class="min-width: 960px; margin: 0 auto;">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Note</a>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'page_list' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'add_page' %}">Add Page</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="jumbotron text-center">
+                <h1 class="display-4">Your Diary</h1>
+                <p class="lead">This is a web app for your diary entries and your to-do</p>
+            </div>
+        {% block content %}
+        {% endblock %}
+        </div>
+        {% block app_js %}
+        {% endblock %}
+    </body>
+</html>

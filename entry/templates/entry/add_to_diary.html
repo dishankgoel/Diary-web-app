@@ -1,0 +1,21 @@
+{% extends 'entry/base.html' %}
+
+{% block content %}
+    <div style="min-width: 960px; margin: 0 auto;">
+        <h2 style="padding-left: 540px">Write a new page!</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div style="padding:100px;padding-top: 50px">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="title" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="text">Content:</label>
+                    <textarea type="text" class="form-control" id="text" name="text" style="height:300px; overflow:auto"></textarea>
+                </div>
+                <button type="submit" class="btn btn-outline-dark">Save</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

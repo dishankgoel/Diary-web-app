@@ -1,0 +1,67 @@
+{% extends 'entry/base.html' %}
+
+{% block content %}
+    <div class="card-columns" style="margin-left: 10px">
+        <div class="card">
+            <h2 class="card-header">
+                <a style="margin-left: 0px">Things to do</a>
+                <a style="float:right;">
+                    <button class="btn btn-default" id="add" type="submit" style="padding:0px;height:20px;background-color: rgba(0, 0, 0, 0.01)">
+                            <i class="fa fa-plus" aria-hidden="true" style="font-size: 20px"></i>
+                    </button>
+                </a>
+            </h2>
+            <div class="card-body">    
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="list-group" id="list-group" style="margin-bottom: 10px">
+                        {% for todo in todo_list %}
+                            <a class="list-group-item">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="{{ todo.pk }}" name="completed" value="{{todo.pk}}">
+                                    <label class="custom-control-label" for="{{ todo.pk }}">{{todo.point}}</label>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <button class="btn btn-outline-secondary" type="submit">Done</button>
+                </form>             
+            </div>
+        </div>
+        {% for page in pages %}
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">
+                        <a>{{page.title}}</a> 
+                        <a>
+                            <form action="" method="POST" style="float:right">
+                                {% csrf_token %}
+                                <button class="btn btn-default" id="{{ page.pk }}" value="{{page.pk}}" name="delete_page" type="submit" style="background-color: rgba(255, 255, 255)">
+                                        <i class="fa fa-close" aria-hidden="true"></i>
+                                    </button>
+                            </form>
+                        </a>
+                    </h2>
+                    <p>Date written: {{page.date}}</p>
+                    <p class="card-text">{{page.text|linebreaksbr}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block app_js %}
+    <script>
+        $(document).ready(function() {
+            var wrapper = $("#list-group"); //Fields wrapper
+            var add_button = $("#add"); //Add button ID
+            var x = 1;
+            $(add_button).click(function(e){ //on add input button click 
+                e.preventDefault();
+                if (x == 1){
+                    x++;
+                    $(wrapper).append('<input type="text" class="form-control" name="add_todo">'); //add input box
+                }
+            });
+        });
+    </script>
+{% endblock %}
